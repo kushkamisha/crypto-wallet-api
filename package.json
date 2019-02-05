@@ -1,6 +1,6 @@
 {
   "name": "crypto-wallet-api",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "",
   "main": "app.js",
   "scripts": {
@@ -11,6 +11,7 @@
   "author": "Misha Kushka",
   "license": "ISC",
   "dependencies": {
+    "bs58": "^4.0.1",
     "express": "^4.16.4",
     "nodemon": "^1.18.9",
     "request": "^2.88.0",

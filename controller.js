@@ -3,10 +3,13 @@
 const express = require('express')
 const rpn = require('request-promise-native')
 
+const { prettifyCurrencyString } = require('./utils')
+
 const router = express.Router()
 
-router.post('/', (req, res) => {
-    const currency = req.query.currency.toUpperCase()
+router.post('/price', (req, res) => {
+    const currency = prettifyCurrencyString(req.query.currency)
+
     const baseUrl = 'https://apiv2.bitcoinaverage.com/indices/global/ticker/'
     const url = `${baseUrl}${currency}USD`
 
@@ -15,7 +18,8 @@ router.post('/', (req, res) => {
             const price = JSON.parse(data).last
             res.send({
                 status: 'success',
-                message: `${price}`
+                currency,
+                price: `${price}`
             })
         }, err => {
             res.send({
